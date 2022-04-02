@@ -52,6 +52,7 @@ public class DRBEvent implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
+                if(e.getHand() == EquipmentSlot.OFF_HAND) return;
         if (e.getItem() != null) {
             if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (NBT.hasTagKey(e.getItem(), "DRB")) {

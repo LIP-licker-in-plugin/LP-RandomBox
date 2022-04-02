@@ -13,6 +13,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 
 public class DRBEvent implements Listener {
     private final RandomBox plugin = RandomBox.getInstance();
@@ -51,6 +52,7 @@ public class DRBEvent implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
+        if (e.getHand() == EquipmentSlot.OFF_HAND) return;
         if (e.getItem() != null) {
             if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (NBT.hasTagKey(e.getItem(), "DRB")) {
