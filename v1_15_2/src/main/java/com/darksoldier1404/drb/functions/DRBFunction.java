@@ -203,6 +203,17 @@ public class DRBFunction {
         }
     }
 
+    public static void listRandomBoxs(Player p) {
+        if (plugin.config.getConfigurationSection("RandomBoxs") == null) {
+            p.sendMessage(plugin.prefix + "랜덤박스가 없습니다.");
+            return;
+        }
+        p.sendMessage(plugin.prefix + "<<< 랜덤박스 목록 >>>");
+        for (String key : plugin.config.getConfigurationSection("RandomBoxs").getKeys(false)) {
+            p.sendMessage(plugin.prefix + key);
+        }
+    }
+
     public static boolean isExistRandomBox(String name) {
         return plugin.config.get("RandomBoxs." + name) != null;
     }

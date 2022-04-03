@@ -40,6 +40,7 @@ public class DRBCommand implements CommandExecutor, TabCompleter {
             p.sendMessage(plugin.prefix + "1개 2개의 아이템이 아닌 슬롯에 지정된 보상을 지급합니다.");
             p.sendMessage(plugin.prefix + "/drb 쿠폰 <이름> - 랜덤 박스 쿠폰 아이템을 설정합니다.");
             p.sendMessage(plugin.prefix + "/drb 쿠폰발급 <이름> (닉네임) - 자신 또는 대상에게 랜덤 박스 쿠폰 아이템을 발급합니다.");
+            p.sendMessage(plugin.prefix + "/drb 목록 - 랜덤 박스 목록을 표시합니다.");
             p.sendMessage(plugin.prefix + "/drb 삭제 <이름> - 랜덤 박스를 삭제합니다.");
             p.sendMessage(plugin.prefix + "/drb reload - config 설정 파일을 다시 불러옵니다.");
             return false;
@@ -124,6 +125,10 @@ public class DRBCommand implements CommandExecutor, TabCompleter {
         if (args[0].equals("reload")) {
             DRBFunction.reloadConfig();
             p.sendMessage(plugin.prefix + "콘피그 설정 파일이 리로드 되었습니다.");
+            return false;
+        }
+        if(args[0].equals("목록")) {
+            DRBFunction.listRandomBoxs(p);
             return false;
         }
         return false;

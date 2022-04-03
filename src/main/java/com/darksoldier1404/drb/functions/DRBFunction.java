@@ -191,15 +191,26 @@ public class DRBFunction {
         for (ItemStack i : item) {
             leftOver.putAll(inv.addItem(i));
         }
-        if(!leftOver.isEmpty()) {
+        if (!leftOver.isEmpty()) {
             p.sendMessage(plugin.prefix + "인벤토리 공간이 부족합니다.");
             return;
-        }else{
-            for(ItemStack i : item) {
+        } else {
+            for (ItemStack i : item) {
                 p.getInventory().addItem(i);
             }
             p.sendMessage(plugin.prefix + "보상을 수령하였습니다.");
             cp.setAmount(cp.getAmount() - 1);
+        }
+    }
+
+    public static void listRandomBoxs(Player p) {
+        if (plugin.config.getConfigurationSection("RandomBoxs") == null) {
+            p.sendMessage(plugin.prefix + "랜덤박스가 없습니다.");
+            return;
+        }
+        p.sendMessage(plugin.prefix + "<<< 랜덤박스 목록 >>>");
+        for (String key : plugin.config.getConfigurationSection("RandomBoxs").getKeys(false)) {
+            p.sendMessage(plugin.prefix + key);
         }
     }
 
