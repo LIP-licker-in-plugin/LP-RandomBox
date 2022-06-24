@@ -1,10 +1,10 @@
 name: DP-RandomBox
-version: 1.0.0.3
+version: 1.0.0.4
 main: com.darksoldier1404.drb.RandomBox
 api-version: 1.15
 authors: [ DEAD_POOLIO_ ]
 depend:
   - DPP-Core
 commands:
-  랜덤박스:
+   랜덤박스:
     aliases: [drb]

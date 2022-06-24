@@ -1,7 +1,7 @@
 name: DP-RandomBox
 version: 1.0.0.4
 main: com.darksoldier1404.drb.RandomBox
-api-version: 1.19
+api-version: 1.18
 authors: [ DEAD_POOLIO_ ]
 depend:
   - DPP-Core
