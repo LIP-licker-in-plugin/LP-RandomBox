@@ -1,9 +1,10 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group 'com.darksoldier1404'
-version = '1.0.0.4'
+version = '1.0.0.5'
 
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
@@ -15,7 +16,22 @@ configurations {
 jar {
     destinationDirectory.set(file("$rootDir/jars"))
 }
-
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.darksoldier1404.drb'
+            artifactId = rootProject.name
+            version = '1.18-' + version
+            artifact "$rootDir/jars/"+ jar.archiveName
+        }
+    }
+    repositories {
+        maven {
+            url "http://dpp.dpnw.site:8081/repository/dpp-releases/"
+            allowInsecureProtocol = true
+        }
+    }
+}
 build {
     sourceCompatibility = 17
     targetCompatibility = 17
