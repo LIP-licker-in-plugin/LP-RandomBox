@@ -5,6 +5,7 @@ import com.darksoldier1404.dppc.utils.*;
 import com.darksoldier1404.drb.RandomBox;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -136,7 +137,7 @@ public class DRBFunction {
         p.sendMessage(plugin.prefix + "쿠폰을 발급하였습니다.");
     }
 
-    public static void getCoupon(Player p, String name, Player target) {
+    public static void getCoupon(CommandSender p, String name, Player target) {
         if (!isExistRandomBox(name)) {
             p.sendMessage(plugin.prefix + "존재하지 않는 랜덤박스입니다.");
             return;

@@ -105,7 +105,7 @@ public class DRBCommand implements CommandExecutor, TabCompleter {
             if (args.length == 3) {
                 try {
                     Player target = Bukkit.getPlayer(args[2]);
-                    DRBFunction.getCoupon(p, args[1], target);
+                    DRBFunction.getCoupon(sender, args[1], target);
                     return false;
                 } catch (Exception e) {
                     p.sendMessage(plugin.prefix + "잘못된 대상입니다.");
