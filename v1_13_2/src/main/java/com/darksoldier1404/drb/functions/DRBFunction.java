@@ -194,7 +194,7 @@ public class DRBFunction {
         }
     }
 
-    public static void listRandomBoxs(Player p) {
+    public static void listRandomBoxs(CommandSender p) {
         if (plugin.config.getConfigurationSection("RandomBoxs") == null) {
             p.sendMessage(plugin.prefix + "랜덤박스가 없습니다.");
             return;
