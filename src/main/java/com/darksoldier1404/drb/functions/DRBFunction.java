@@ -112,9 +112,7 @@ public class DRBFunction {
     public static void savePrizeSetting(Player p, DInventory inv) {
         String name = ((Tuple<String, SettingType>) inv.getObj()).getA();
         for (int i = 0; i < inv.getSize(); i++) {
-            if (inv.getItem(i) != null) {
-                plugin.config.set("RandomBoxs." + name + ".Prize." + i, inv.getItem(i));
-            }
+            plugin.config.set("RandomBoxs." + name + ".Prize." + i, inv.getItem(i));
         }
         p.sendMessage(plugin.prefix + "보상이 저장되었습니다.");
         saveConfig();
@@ -188,11 +186,7 @@ public class DRBFunction {
         ItemStack[] playerItems = p.getInventory().getStorageContents();
         Inventory inv = Bukkit.createInventory(null, 36, "보상");
         inv.setContents(playerItems);
-        Map<Integer, ItemStack> leftOver = new HashMap<>();
-        for (ItemStack i : item) {
-            leftOver.putAll(inv.addItem(i));
-        }
-        if (!leftOver.isEmpty()) {
+        if (p.getInventory().firstEmpty() == -1) {
             p.sendMessage(plugin.prefix + "인벤토리 공간이 부족합니다.");
             return;
         } else {
