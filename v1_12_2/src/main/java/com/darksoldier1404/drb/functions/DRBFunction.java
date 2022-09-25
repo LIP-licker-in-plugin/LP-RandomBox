@@ -115,9 +115,7 @@ public class DRBFunction {
     public static void savePrizeSetting(Player p, DInventory inv) {
         String name = ((Tuple<String, SettingType>) inv.getObj()).getA();
         for (int i = 0; i < inv.getSize(); i++) {
-            if (inv.getItem(i) != null) {
-                plugin.config.set("RandomBoxs." + name + ".Prize." + i, inv.getItem(i));
-            }
+            plugin.config.set("RandomBoxs." + name + ".Prize." + i, inv.getItem(i));
         }
         p.sendMessage(plugin.prefix + "보상이 저장되었습니다.");
         saveConfig();
