@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.darksoldier1404'
-version = '1.0.1.6'
+version = '1.0.1.7'
 
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
@@ -39,9 +39,13 @@ build {
 
 repositories {
     mavenCentral()
+        maven {
+            url "http://feather-s.kr:8083/repository/maven-public/"
+            allowInsecureProtocol = true
+    }    
     maven {
-        url "http://dpp.dpnw.site:8081/repository/maven-public/"
-        allowInsecureProtocol = true
+            url "http://feather-s.kr:8083/repository/dpp-releases/"
+            allowInsecureProtocol = true
     }
 }
 
