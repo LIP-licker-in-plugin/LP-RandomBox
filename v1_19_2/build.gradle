@@ -59,5 +59,6 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     compileOnly 'org.bukkit.craftbukkit:craftbukkit:R0.1:1.19.2'
     compileOnly 'org.spigotmc:spigot-api:R0.1:1.19.2'
+    compileOnly 'org.spigotmc:spigot:R0.1:1.19.2'
     compileOnly 'com.darksoldier1404.dppc:DPP-Core:1.19.2-SNAPSHOT'
 }
