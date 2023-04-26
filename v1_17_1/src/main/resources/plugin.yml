@@ -1,10 +1,10 @@
-name: DP-RandomBox
-version: 1.0.1.7
-main: com.darksoldier1404.drb.RandomBox
+name: LP-RandomBox
+version: 1.0.0.7
+main: com.licker2689.lrb.RandomBox
 api-version: 1.17
-authors: [ DEAD_POOLIO_ ]
+authors: [ licker2689 ]
 depend:
-  - DPP-Core
+  - LP-Core
 commands:
-   랜덤박스:
-    aliases: [drb]
+   �옖�뜡諛뺤뒪:
+    aliases: [lrb]

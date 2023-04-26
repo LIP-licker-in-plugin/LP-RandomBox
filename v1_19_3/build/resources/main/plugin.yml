@@ -1,0 +1,10 @@
+name: LP-RandomBox
+version: 1.0.1.7
+main: com.licker2689.lrb.RandomBox
+api-version: 1.19
+authors: [ licker2689 ]
+depend:
+  - LP-Core
+commands:
+   랜덤박스:
+    aliases: [lrb]
