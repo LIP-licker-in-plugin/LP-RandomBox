@@ -14,13 +14,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @SuppressWarnings("all")
 public class LRBFunction {
     private static final RandomBox plugin = RandomBox.getInstance();
+    public static final Map<UUID, LInventory> currentInv = new HashMap<>();
+
 
     public static void createRandomBox(Player p, String name) {
         if (isExistRandomBox(name)) {
@@ -50,7 +50,7 @@ public class LRBFunction {
         }
         LInventory inv = new LInventory(null, "랜덤박스 쿠폰 설정", 27, plugin);
         inv.setObj(Tuple.of(name, SettingType.COUPON));
-        ItemStack pane = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+        ItemStack pane = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, pane);
         }
@@ -60,6 +60,7 @@ public class LRBFunction {
             inv.setItem(13, new ItemStack(Material.AIR));
         }
         p.openInventory(inv);
+        currentInv.put(p.getUniqueId(), inv);
     }
 
     public static void openPrizeSetting(Player p, String name) {
@@ -75,6 +76,7 @@ public class LRBFunction {
             }
         }
         p.openInventory(inv);
+        currentInv.put(p.getUniqueId(), inv);
     }
 
     public static void setDrop(Player p, String name, String sDrop) {
@@ -133,12 +135,7 @@ public class LRBFunction {
             return;
         }
         ItemStack coupon = plugin.config.getItemStack("RandomBoxs." + name + ".Coupon");
-        if (plugin.config.get("RandomBoxs." + name + ".CustomModelData") != null) {
-            ItemMeta meta = coupon.getItemMeta();
-            meta.setCustomModelData(plugin.config.getInt("RandomBoxs." + name + ".CustomModelData"));
-            coupon.setItemMeta(meta);
-        }
-        p.getInventory().addItem(NBT.setStringTag(coupon, "LRB", name));
+        p.getInventory().addItem(NBT.setStringTag(coupon, "DRB", name));
         p.sendMessage(plugin.prefix + "쿠폰을 발급하였습니다.");
     }
 
@@ -152,16 +149,11 @@ public class LRBFunction {
             return;
         }
         ItemStack coupon = plugin.config.getItemStack("RandomBoxs." + name + ".Coupon");
-        if (plugin.config.get("RandomBoxs." + name + ".CustomModelData") != null) {
-            ItemMeta meta = coupon.getItemMeta();
-            meta.setCustomModelData(plugin.config.getInt("RandomBoxs." + name + ".CustomModelData"));
-            coupon.setItemMeta(meta);
-        }
         if (target.getInventory().firstEmpty() == -1) {
             p.sendMessage(plugin.prefix + "대상 인벤토리가 가득 찼습니다.");
             return;
         }
-        target.getInventory().addItem(NBT.setStringTag(coupon, "LRB", name));
+        target.getInventory().addItem(NBT.setStringTag(coupon, "DRB", name));
         p.sendMessage(plugin.prefix + "쿠폰을 지급하였습니다.");
     }
 
@@ -191,11 +183,15 @@ public class LRBFunction {
         ItemStack[] playerItems = p.getInventory().getStorageContents();
         Inventory inv = Bukkit.createInventory(null, 36, "보상");
         inv.setContents(playerItems);
-        if (p.getInventory().firstEmpty() == -1) {
+        Map<Integer, ItemStack> leftOver = new HashMap<>();
+        for (ItemStack i : item) {
+            leftOver.putAll(inv.addItem(i));
+        }
+        if(!leftOver.isEmpty()) {
             p.sendMessage(plugin.prefix + "인벤토리 공간이 부족합니다.");
             return;
-        } else {
-            for (ItemStack i : item) {
+        }else{
+            for(ItemStack i : item) {
                 p.getInventory().addItem(i);
             }
             p.sendMessage(plugin.prefix + "보상을 수령하였습니다.");
