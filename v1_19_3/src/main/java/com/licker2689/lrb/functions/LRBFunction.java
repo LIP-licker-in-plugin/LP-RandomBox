@@ -48,7 +48,7 @@ public class LRBFunction {
         }
         LInventory inv = new LInventory(null, "랜덤박스 쿠폰 설정", 27, plugin);
         inv.setObj(Tuple.of(name, SettingType.COUPON));
-        ItemStack pane = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
+        ItemStack pane = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1, (short) 7);
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, pane);
         }

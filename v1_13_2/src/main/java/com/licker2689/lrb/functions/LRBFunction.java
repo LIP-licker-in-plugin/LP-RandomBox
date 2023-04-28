@@ -135,8 +135,8 @@ public class LRBFunction {
         ItemStack coupon = plugin.config.getItemStack("RandomBoxs." + name + ".Coupon");
         if (plugin.config.get("RandomBoxs." + name + ".CustomModelData") != null) {
             ItemMeta meta = coupon.getItemMeta();
-            meta.setCustomModelData(plugin.config.getInt("RandomBoxs." + name + ".CustomModelData"));
-            coupon.setItemMeta(meta);
+            p.getInventory().addItem(NBT.setStringTag(coupon, "DRB", name));
+            p.sendMessage(plugin.prefix + "쿠폰을 발급하였습니다.");
         }
         p.getInventory().addItem(NBT.setStringTag(coupon, "LRB", name));
         p.sendMessage(plugin.prefix + "쿠폰을 발급하였습니다.");
@@ -154,8 +154,8 @@ public class LRBFunction {
         ItemStack coupon = plugin.config.getItemStack("RandomBoxs." + name + ".Coupon");
         if (plugin.config.get("RandomBoxs." + name + ".CustomModelData") != null) {
             ItemMeta meta = coupon.getItemMeta();
-            meta.setCustomModelData(plugin.config.getInt("RandomBoxs." + name + ".CustomModelData"));
-            coupon.setItemMeta(meta);
+            target.getInventory().addItem(NBT.setStringTag(coupon, "DRB", name));
+            p.sendMessage(plugin.prefix + "쿠폰을 발급하였습니다.");
         }
         if (target.getInventory().firstEmpty() == -1) {
             p.sendMessage(plugin.prefix + "대상 인벤토리가 가득 찼습니다.");
