@@ -5,5 +5,5 @@ authors: [ licker2689 ]
 depend:
   - LP-Core
 commands:
-   �옖�뜡諛뺤뒪:
+   랜덤박스:
     aliases: [lrb]
